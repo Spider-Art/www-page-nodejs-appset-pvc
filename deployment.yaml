@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test
+  labels: 
+    app: test
+spec:
+  selector:
+    matchLabels:
+      deployment: test
+  template:
+    metadata:
+      labels:
+        deployment: test
+    spec:
+      containers:
+      - name: www-page-test
+        image: quay.io/spider_art/pipeline_app/www-page:1.0
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
